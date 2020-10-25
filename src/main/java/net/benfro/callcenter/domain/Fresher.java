@@ -6,16 +6,8 @@ import net.benfro.callcenter.system.IllegalStateTransferException;
 @Slf4j
 public class Fresher extends AbstractCallCenterStaff {
 
-    private Fresher(String name, Role role) {
-        super(name, role);
-    }
-
     public Fresher(String name) {
-        this(name, Role.FRESHER);
-    }
-
-    public Fresher() {
-        this("");
+        super(name, Role.FRESHER);
     }
 
     @Override

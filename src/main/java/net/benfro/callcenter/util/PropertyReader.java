@@ -8,7 +8,7 @@ import java.util.Properties;
 @Slf4j
 public enum PropertyReader {
 
-    INSTANCE,;
+    INSTANCE;
 
     private static Properties prop = new Properties();
 
@@ -26,7 +26,6 @@ public enum PropertyReader {
 
     public String getProperty(String property) {
         return prop.getProperty(property);
-
     }
 
 }

@@ -45,15 +45,7 @@ public class BackendConnection {
     }
 
     public boolean isAvailable() {
-        return getCurrentState().equals(AvailabilityState.State.AVAILABLE);
-    }
-
-    public boolean isWaiting() {
-        return getCurrentState().equals(AvailabilityState.State.WAITING_FOR_ANSWER);
-    }
-
-    public boolean isOccupied() {
-        return getCurrentState().equals(AvailabilityState.State.OCCUPIED);
+        return getCurrentState().isAvailable();
     }
 
     @Subscribe

@@ -1,15 +1,13 @@
 package net.benfro.callcenter.system;
 
 
-import com.google.common.base.Predicate;
-import com.google.common.collect.FluentIterable;
-import com.google.common.collect.ImmutableList;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import net.benfro.callcenter.domain.AbstractCallCenterStaff;
 import net.benfro.callcenter.util.FIFOQueue;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Data
@@ -32,13 +30,7 @@ class SwitchboardBackend {
         return connected.getBackingCollection();
     }
 
-    public ImmutableList<BackendConnection> getStaffByType(final Class<?> staffType) {
-        return FluentIterable.from(connected.getBackingCollection())
-                .filter(new Predicate<BackendConnection>() {
-                    @Override
-                    public boolean apply(BackendConnection backendConnection) {
-                        return backendConnection.getEmployee().getClass().equals(staffType);
-                    }
-                }).toList();
+    public List<BackendConnection> getStaffByType(final Class<?> staffType) {
+        return connected.getBackingCollection().stream().filter(backendConnection -> backendConnection.getEmployee().getClass().equals(staffType)).collect(Collectors.toList());
     }
 }

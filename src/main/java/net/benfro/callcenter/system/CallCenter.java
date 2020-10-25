@@ -9,7 +9,7 @@ public class CallCenter {
 
     private final SwitchboardFront front;
     private final SwitchboardBackend backend;
-    private SwitchboardDispatcher dispatcher;
+    private final SwitchboardDispatcher dispatcher;
     public static EventBus INBOUND_TELEPHONE_LINE;
 
     public CallCenter(SwitchboardFront front, SwitchboardBackend backend) {

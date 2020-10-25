@@ -15,7 +15,7 @@ import java.util.Optional;
 @Data
 public class SwitchboardFront {
 
-    private final FIFOQueue<TelephoneCall> incomingQueue = new FIFOQueue<TelephoneCall>(1000000);
+    private final FIFOQueue<TelephoneCall> incomingQueue = new FIFOQueue<>(1000000);
     private final EventBus incomingTelephoneLine = new EventBus("Incoming telephone line");
     private SwitchboardDispatcher dispatcher;
     QueuePoller<TelephoneCall> queuePoller = new QueuePoller<TelephoneCall>(incomingQueue);

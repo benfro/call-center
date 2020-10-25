@@ -18,7 +18,7 @@ public abstract class AbstractCallCenterStaff extends AbstractPerson {
 
         private Class<?> type;
 
-        private Role(Class<?> type) {
+        Role(Class<?> type) {
             this.type = type;
         }
 
@@ -31,7 +31,7 @@ public abstract class AbstractCallCenterStaff extends AbstractPerson {
 
     private TelephoneCall currentTelephoneCall;
 
-    private AvailabilityState state = new AvailabilityState();
+    private final AvailabilityState state = new AvailabilityState();
 
     protected AbstractCallCenterStaff(String name, Role role) {
         super(name);
@@ -59,18 +59,6 @@ public abstract class AbstractCallCenterStaff extends AbstractPerson {
     public void escalate() throws IllegalStateTransferException {
         log.debug("Escalating {}", currentTelephoneCall);
         this.getState().transferToWaiting();
-    }
-
-    public boolean isAvailable() {
-        return getCurrentState().equals(AvailabilityState.State.AVAILABLE);
-    }
-
-    public boolean isWaiting() {
-        return getCurrentState().equals(AvailabilityState.State.WAITING_FOR_ANSWER);
-    }
-
-    public boolean isOccupied() {
-        return getCurrentState().equals(AvailabilityState.State.OCCUPIED);
     }
 
     public AvailabilityState.State getCurrentState() {
