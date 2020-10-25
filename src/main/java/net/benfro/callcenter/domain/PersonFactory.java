@@ -1,17 +1,15 @@
 package net.benfro.callcenter.domain;
 
+import java.lang.reflect.InvocationTargetException;
+
 public enum PersonFactory {
 
     INSTANCE;
 
     public AbstractCallCenterStaff getCallCenterStaffPerson(Class<? extends AbstractCallCenterStaff> clazz, String name) {
         try {
-            AbstractCallCenterStaff instance = clazz.newInstance();
-            instance.setName(name);
-            return instance;
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
+            return clazz.getDeclaredConstructor(String.class).newInstance(name);
+        } catch (InstantiationException | NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
             e.printStackTrace();
         }
         throw new RuntimeException("Boom!");
